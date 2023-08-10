@@ -65,47 +65,47 @@ def admission_list(applicant_list:list=[], major_dict:dict={}):
     def check_place(student):
 
         dom = student[3]
-        for i in range(len(majors[dom])): #all vacant places in domain
-            if student[1] >= majors[dom][i][1]:#comparing student scores
+        for i in range(len(majors[dom])): # all vacant places in major
+            if student[1] >= majors[dom][i][1]: # comparing student scores
                 if student[1] == majors[dom][i][1] and i == len(majors[dom])-1:
                     print('Warning!')
                     print(majors[dom][len(majors[dom])-1], 'and', student)
                     print('both have the same score and claim last vacancy in', student[3])
                     print(majors[dom][len(majors[dom])-1], 'is set to another priority')
-                pop = majors[dom][len(majors[dom])-1]#securing last in the que
+                pop = majors[dom][len(majors[dom])-1] # securing last in the que
 
                 for j in range(len(majors[dom])-1, i, -1):
-                    majors[dom][j] = majors[dom][j-1]#moving students to the tail
-                majors[dom][i] = student#insert the student into domain
-                return(pop)#last in the que
-        return(student)#the student does not fit the domain
+                    majors[dom][j] = majors[dom][j-1] # moving students to the tail
+                majors[dom][i] = student#insert the student into major
+                return(pop) # last in the que
+        return(student) # the student does not fit the major
 
 
     def first_priority(student_id):
         person_priorities = list()
         for abiturient in abiturient_list:
             if abiturient[0] == student_id:
-                person_priorities.append(abiturient)#list of all person priorities, may be unsorted
+                person_priorities.append(abiturient) # list of all person priorities, may be unsorted
         person_priorities = sorted(person_priorities, key = lambda x: x[2])#sorted
         return person_priorities[0]
 
 
     for abit in abiturient_ID_unique:
         success = check_place(first_priority(abit))
-        while success != [0, 0, 0, '']:#if the applicant have not filled the domain
+        while success != [0, 0, 0, '']: # if the applicant have not filled the major
             person_priorities = list()
             for abiturient in abiturient_list:
                 if abiturient[0] == success[0]:
-                    person_priorities.append(abiturient)#list of all applicant's priorities, may be unsorted
-            priorities = sorted(person_priorities, key = lambda x: x[2])#sorted
+                    person_priorities.append(abiturient) # list of all applicant's priorities, may be unsorted
+            priorities = sorted(person_priorities, key = lambda x: x[2]) # sorted
             for item in priorities:#checking new priority for the applicant
                 if item[2] == success[2]:
                     priority_index = (priorities.index(item)) + 1
-                    if priority_index == len(priorities):#if there is no priority left the applicant goes to unsuccessfull list
+                    if priority_index == len(priorities): # if there is no priority left the applicant goes to unsuccessfull list
                         unsuccessfull_list.append(item[0])
                         success = [0, 0, 0, '']
                     else:
-                        success = check_place(priorities[priority_index])#checking vacancy in domain of next priority
+                        success = check_place(priorities[priority_index]) # checking vacancy in major of next priority
                         break
 
     print('\nMajors are filled up with applicants:\n')
