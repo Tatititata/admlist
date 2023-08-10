@@ -30,7 +30,7 @@ def admission_list(applicant_list:list=[], major_dict:dict={}):
             ['Alex', 285, 3, 'dom_01'],
             ['Alex', 255, 2, 'dom_03'],
 
-            ['Ken', 248, 1, 'dom_02'],
+            ['Ken', 248, 1, 'dom_01'],
             ['Ken', 255, 2, 'dom_03'],
             ['Ken', 276, 3, 'dom_02'],
 
