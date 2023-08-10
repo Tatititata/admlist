@@ -115,13 +115,7 @@ def admission_list(applicant_list:list=[], major_dict:dict={}):
         for d in majors[dom]:
             print(majors[dom][d])
 
-    ##for dom in majors():
-    ##    print(dom, len(dom))
-    ##    for item in dom.values():
-    ##        print(item)#printing all filled up majors
-        
-        
-        
+           
     print('\nTotal number of applicants:', len(abiturient_ID_unique), '\n\n')
     print('List of unsucsessful applicants:')
     print(unsuccessfull_list)
