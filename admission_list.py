@@ -106,16 +106,16 @@ def admission_list(applicant_list:list=[], major_dict:dict={}):
                         success = [0, 0, 0, '']
                     else:
                         success = check_place(priorities[priority_index]) # checking vacancy in major of next priority
-                        break
+                        
 
     print('\nMajors are filled up with applicants:\n')
     for dom in majors:
-        print('\n')
-        print(dom, len(majors[dom]))
+        print(dom, '\n',  'vacancies: ', len(majors[dom]), sep = '')
         for d in majors[dom]:
-            print(majors[dom][d])
+            print('\t', majors[dom][d])
+
 
            
     print('\nTotal number of applicants:', len(abiturient_ID_unique), '\n\n')
-    print('List of unsucsessful applicants:')
+    print('List of unsuccessful applicants:')
     print(unsuccessfull_list)
